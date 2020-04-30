@@ -1,0 +1,26 @@
+toyota<-Toyoto_Corrola
+pairs(toyota)
+toyota1=toyota[,-c(1,2,8)]
+pairs(toyota1)
+cor(toyota1)
+model_car<-lm(Price~.,data=toyota1)
+summary(model_car)
+install.packages("car")
+library(car)
+car::vif(model_car)
+plot(model_car)
+residualPlots(model_car)
+avPlots(model_car)
+qqPlot(model_car)
+infIndexPlot(model_car)
+toyota1["Age2"]<-toyota$Age_08_04*toyota$Age_08_04
+toyota2<-toyota1[-c(602,222,961,992),]
+model_car1<-lm(Price~.,data=toyota2)
+summary(model_car1)
+car::vif(model_car1)
+plot(model_car1)
+residualPlots(model_car1)
+qqPlot(model_car1)
+influenceIndexPlot(model_car1)
+# As there is no change, the Final Model is
+model_car1<-lm(Price~.,data=toyota2)
